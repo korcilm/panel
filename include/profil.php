@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<div class="content-header">
@@ -31,7 +30,7 @@
 				$sifre=$query[0]["sifre"];
 
 			}
-			if ($_POST)
+			if (isset($_POST["kullanici-adi"]))
 			{
 				if (!empty($_POST["kullanici"])) {
 
@@ -52,6 +51,43 @@
 						<div class="alert alert-danger">İşleminiz sırasında bir sorunla karşılaşıldı. Lütfen daha sonra tekrar deneyin.</div>
 						<?php 
 					}
+				}
+				else{
+					?>
+					<div class="alert alert-danger">Boş bıraktığınız alanları doldurunuz.</div>
+					<?php 
+				}
+
+			}
+
+			if (isset($_POST["sifre-degistir"]))
+			{
+				if (!empty($_POST["sifre"]) && !empty($_POST["yeni_sifre"])) {
+
+					$admin_sifre=md5($_POST["sifre"]);
+
+					$yeni_sifre=md5($_POST['yeni_sifre']);
+
+					if ($admin_sifre==$sifre) {
+
+						$guncelle=$VT->SorguCalistir("UPDATE kullanicilar ","SET sifre=? WHERE ID=?",array($yeni_sifre,$admin_id),1);
+
+						if ($guncelle!=false)
+						{
+							?>
+							<div class="alert alert-success">İşleminiz başarıyla kaydedildi.</div>
+							<meta http-equiv="refresh" content="2;url=<?=SITE?>profil">
+							<?php 
+						}
+						else
+						{
+							?>
+							<div class="alert alert-danger">İşleminiz sırasında bir sorunla karşılaşıldı. Lütfen daha sonra tekrar deneyin.</div>
+							<?php 
+						}
+					}
+
+					
 				}
 				else{
 					?>
@@ -94,14 +130,14 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label> Şifre</label>
-									<input type="password" name="sifre" class="form-control" required="" placeholder="Şuanki şifrenizi giriniz">
+									<input type="text" name="sifre" class="form-control" required="" placeholder="Şuanki şifrenizi giriniz">
 								</div>
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Yeni Şifre</label>
-									<input type="password" name="yeni_sifre" class="form-control" required="" placeholder="Yeni şifrenizi giriniz">
+									<input type="text" name="yeni_sifre" class="form-control" required="" placeholder="Yeni şifrenizi giriniz">
 								</div>
 							</div>
 
@@ -119,9 +155,5 @@
 </div>
 </div>
 
-
 <!-- /.content -->
 </div>
-
-
-
