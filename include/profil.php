@@ -130,14 +130,14 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label> Şifre</label>
-									<input type="text" name="sifre" class="form-control" required="" placeholder="Şuanki şifrenizi giriniz">
+									<input type="password" name="sifre" class="form-control" required="" placeholder="Şuanki şifrenizi giriniz">
 								</div>
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Yeni Şifre</label>
-									<input type="text" name="yeni_sifre" class="form-control" required="" placeholder="Yeni şifrenizi giriniz">
+									<input type="password" name="yeni_sifre" class="form-control" required="" placeholder="Yeni şifrenizi giriniz">
 								</div>
 							</div>
 
